@@ -9,6 +9,25 @@
             src: url("chanakya.ttf");
         }
     </style>
+    <script src="chanakyaUnicodeConvertor.js"></script>
+    <script>
+
+        // Function to traverse through all text nodes and modify the text
+        function traverseAndModify(node) {
+            if (node.nodeType === Node.TEXT_NODE) {
+                // Modify text content of text node
+                node.textContent = chanakyaUnicodeConvertor(node.textContent);
+            } else {
+                // Recursively traverse child nodes
+                node.childNodes.forEach(traverseAndModify);
+            }
+        }
+
+        // Call traverseAndModify on the entire document body when the page loads
+        window.onload = function () {
+            traverseAndModify(document.body);
+        };
+    </script>
 </head>
 
 <body>
